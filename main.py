@@ -74,6 +74,9 @@ def main():
         print(f'Failed to verify')
 
     """
+    # Source: 5.4. Working with big files
+    # https://stuvel.eu/python-rsa-doc/usage.html#encryption-and-decryption
+
     # RSA cannot encrypt a file larger than the key (minus some random padding(
     # A 512 bit (64 bytes) RSA key can be used to encrypt a 63 byte file.
     The most common way to use RSA with larger files uses a block cypher like AES or DES3 to encrypt the file 
@@ -92,9 +95,7 @@ def main():
     # 1. RSA Decrypt the encrypted_aes key with the sender's public key to get the plaintext aes_key
     # 2. AES Decrypt the encrypted file using the aes_key
     # Note: The Python-RSA module does not contain functionality to do the AES encryption for you.
-    # Source: 5.4. Working with big files
-    # https://stuvel.eu/python-rsa-doc/usage.html#encryption-and-decryption
-    # To keep the integrity, also include the signature of the file.
+
     """
     Complete process:
     1. Create an aes key
