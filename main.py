@@ -2,6 +2,7 @@
 import rsa
 import rsa.randnum
 
+
 def generate_keys(pubKeyFile, privKeyFile):
     # Use a breakpoint in the code line below to debug your script.
     (pubKey, privKey) = rsa.newkeys(2048)
@@ -19,8 +20,8 @@ def load_keys(pubKeyFile, privKeyFile):
     return pubKey, privKey
 
 
-def encrypt(text, key):
-    return rsa.encrypt(text.encode('ascii'), key)
+def encrypt(plaintext, key):
+    return rsa.encrypt(plaintext.encode('ascii'), key)
 
 
 def decrypt(ciphertext, key):
@@ -83,12 +84,14 @@ def main():
     with a random key, then encrypt the random key with RSA.You would send the encrypted file along with the 
     encrypted key to the recipient.The complete flow is:
     """
-    aes_key = rsa.randnum.read_random_bits(128)
+    aes_key = rsa.randnum.read_random_bits(256)
+    # print(aes_key)  # Debug
+    # print(str(aes_key))  # Debug
     #
     # TODO: Use aes_key to encrypt the large file with AES
     #
     # Encrypt the aes_key with RSA
-    encrypted_aes_key = encrypt(aes_key, pubKey)
+    encrypted_aes_key = encrypt(str(aes_key), pubKey)
     #
     # TODO: Send the encrypted file together with the encrypted_aes_key
     # TODO: The recipient reverses the process to obtain the plaintext file
